@@ -10,10 +10,7 @@ services:
     depends_on:
       - database
     container_name: mynode
-    build:
-      context: ../backend/Docker/
-      # dockerfile: Node
-    image: 'mushahid2120/express:v1'
+    image: 'mushahid144/my-node:v1'
     networks:
       - mynetwork
     expose:
@@ -26,7 +23,7 @@ services:
     build:
       context: ../frontend/Docker/
       # dockerfile: React
-    image: mushahid2120/react:v1
+    image: mushahid144/my-react:v1
     networks:
       - mynetwork
     expose:
