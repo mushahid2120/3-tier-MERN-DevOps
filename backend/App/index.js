@@ -8,7 +8,7 @@ const { measureMemory } = require('vm');
 const publicPath = path.join(__dirname, 'public');
 const app = express();
 const port = 4000;
-const url = 'mongodb://localhost:27017'; // MongoDB connection URL
+const url = 'mongodb://mydb:27017'; // MongoDB connection URL
 let db; // Global database variable
 
 // Middleware

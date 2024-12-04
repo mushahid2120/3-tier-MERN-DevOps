@@ -1,3 +1,4 @@
+
 services:
   database:
     container_name: mydb
@@ -10,10 +11,8 @@ services:
       - database
     container_name: mynode
     build:
-      context: .
-      dockerfile: Node
-      args:
-        CACHEBUST: 1
+      context: ../backend/Docker/
+      # dockerfile: Node
     image: 'mushahid2120/express:v1'
     networks:
       - mynetwork
@@ -25,10 +24,8 @@ services:
       - backend
     container_name: myreact
     build:
-      context: .
-      dockerfile: React
-      args:
-        CACHEBUST: 1
+      context: ../frontend/Docker/
+      # dockerfile: React
     image: mushahid2120/react:v1
     networks:
       - mynetwork

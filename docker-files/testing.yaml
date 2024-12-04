@@ -1,13 +1,5 @@
 services:
-
-
-
-
-
-
   backend:
-
-
     container_name: mynode
     build:
       context: .
@@ -42,6 +34,4 @@ services:
 
 networks:
   mynetwork:
-
-    
     driver:  bridge
