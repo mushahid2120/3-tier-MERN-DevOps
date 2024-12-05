@@ -16,6 +16,13 @@ spec:
         containers:
           - name: myreact-con
             image: mushahid144/my-react:v1
+            env:
+              - name: serverHost
+                value: "mynode"
+              - name: port
+                value: "4000"
+
+
             startupProbe:
               exec:
                 command:

@@ -20,6 +20,11 @@ spec:
       containers:
         - name: mongo-cont
           image: mongo
+          env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: "mushahid"
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: "redhat"
           ports:
             - containerPort: 27017
           volumeMounts:

@@ -7,12 +7,12 @@ export default defineConfig({
   server: {
     proxy: {
       '/submit': {
-        target: 'http://mynode:4000',
+        target: `http://${process.env.serverHost}:4000`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/submit/, '/submit'),
       },
       '/fetch': {
-        target: 'http://mynode:4000',
+        target: `http://${process.env.serverHost}:${process.env.port}`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/fetch/, '/fetch'),
       },

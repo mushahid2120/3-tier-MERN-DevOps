@@ -4,11 +4,17 @@ const cors = require('cors');
 const { MongoClient } = require('mongodb');
 const { measureMemory } = require('vm');
 
+const user=process.env.ME_CONFIG_MONGODB_ADMINUSERNAME;
+const password=process.env.ME_CONFIG_MONGODB_ADMINPASSWORD;
+const host=process.env.HOST;
+
 // Constants
 const publicPath = path.join(__dirname, 'public');
 const app = express();
 const port = 4000;
-const url = 'mongodb://mydb:27017'; // MongoDB connection URL
+// const url = 'mongodb://mydb:27017'; // MongoDB connection URL
+
+const url=`mongodb://${user}:${password}@${host}:27017/node-react-collection?authSource=admin`
 let db; // Global database variable
 
 // Middleware

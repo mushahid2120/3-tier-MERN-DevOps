@@ -16,6 +16,14 @@ spec:
         containers:
           - name: mynode-con
             image: mushahid144/my-node:v1
+            env:
+            - name: MONGO_INITDB_ROOT_USERNAME
+              value: "mushahid"
+            - name: MONGO_INITDB_ROOT_PASSWORD
+              value: "redhat"
+            - name: HOST
+              value: "mydb"
+
             startupProbe:
               exec:
                 command:
