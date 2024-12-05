@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/submit': {
-        target: `http://${process.env.serverHost}:4000`,
+        target: `http://${process.env.BACKEND_HOST}:${process.env.BACKEND_PORT}`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/submit/, '/submit'),
       },
