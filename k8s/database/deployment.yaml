@@ -1,3 +1,4 @@
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -22,9 +23,15 @@ spec:
           image: mongo
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
-              value: "mushahid"
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: mongo-db-user
             - name: MONGO_INITDB_ROOT_PASSWORD
-              value: "redhat"
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: mongo-db-password
           ports:
             - containerPort: 27017
           volumeMounts:
