@@ -4,8 +4,8 @@ const cors = require('cors');
 const { MongoClient } = require('mongodb');
 const { measureMemory } = require('vm');
 
-const user=process.env.ME_CONFIG_MONGODB_ADMINUSERNAME;
-const password=process.env.ME_CONFIG_MONGODB_ADMINPASSWORD;
+const user=process.env.MONGO_INITDB_ROOT_USERNAME;
+const password=process.env.MONGO_INITDB_ROOT_PASSWORD;
 const host=process.env.HOST;
 
 // Constants

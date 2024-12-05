@@ -17,9 +17,9 @@ spec:
           - name: myreact-con
             image: mushahid144/my-react:v1
             env:
-              - name: serverHost
+              - name: BACKEND_HOST
                 value: "mynode"
-              - name: port
+              - name: BACKEND_PORT
                 value: "4000"
 
 

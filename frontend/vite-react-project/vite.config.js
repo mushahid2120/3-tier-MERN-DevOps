@@ -12,7 +12,7 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/submit/, '/submit'),
       },
       '/fetch': {
-        target: `http://${process.env.serverHost}:${process.env.port}`,
+        target: `http://${process.env.BACKEND_HOST}:${process.env.BACKEND_PORT}`,
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/fetch/, '/fetch'),
       },
