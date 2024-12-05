@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mynode-deployment
+  labels:
+    app: node
+spec:
+  selector:
+    matchLabels:
+      app: node
+  template:
+    metadata:
+      labels:
+        app: node
+    spec:
+        containers:
+          - name: mynode-con
+            image: mushahid144/my-node:v1
+

@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myreact-deployment
+  labels:
+    app: react
+spec:
+  selector:
+    matchLabels:
+      app: react
+  template:
+    metadata:
+      labels:
+        app: react
+    spec:
+        containers:
+          - name: myreact-con
+            image: mushahid144/my-react:v1
+
