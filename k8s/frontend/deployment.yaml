@@ -16,4 +16,22 @@ spec:
         containers:
           - name: myreact-con
             image: mushahid144/my-react:v1
+            startupProbe:
+              exec:
+                command:
+                  - "curl"
+                  - "http://mynode:4000/home"
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              failureThreshold: 2
+            livenessProbe:
+              httpGet: 
+                path: /
+                port: 5173
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              timeoutSeconds: 5
+              failureThreshold: 5
+              successThreshold: 1
+
 
