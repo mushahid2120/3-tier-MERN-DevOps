@@ -16,4 +16,33 @@ spec:
         containers:
           - name: mynode-con
             image: mushahid144/my-node:v1
+            startupProbe:
+              exec:
+                httpGet: 
+                  path: /home
+                  port: 4000
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              failureThreshold: 2
+            readinessProbe:
+              exec:
+                httpGet: 
+                  path: /home
+                  port: 4000
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              timeoutSeconds: 4
+              failureThreshold: 2
+              successThreshold: 1
+            livenessProbe:
+              exec:
+                httpGet: 
+                  path: /home
+                  port: 4000
+              initialDelaySeconds: 10
+              periodSeconds: 10
+              timeoutSeconds: 5
+              failureThreshold: 5
+              successThreshold: 1
+
 
