@@ -6,6 +6,7 @@ resources:
   - database/pvc.yaml
   - database/deployment.yaml
   - database/svc.yaml
+  - database/secret.yaml
 
   - backend/deployment.yaml
   - backend/service.yaml
