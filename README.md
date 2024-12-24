@@ -19,8 +19,7 @@ This repository contains a 3-tier architecture implementation of a MERN (MongoDB
     │   └── svc.yaml           # Kubernetes service for frontend
     ├── nginx/                 # NGINX configuration and deployment
     │   ├── nginx.conf         # NGINX configuration file
-    │   ├── deployment.yaml    # Kubernetes manifests for NGINX
-    │   └── service.yaml       # Kubernetes service for NGINX
+    │   ├── deployment.yaml    
     ├── kustomization.yaml     # Kustomize configuration file
     └── README.md              # Project documentation
 
