@@ -42,17 +42,29 @@ pipeline {
             }
         }
         
-        stage('Docker Compose') {
-            steps {
-                script{
-                    withDockerRegistry(credentialsId: 'docker-cred', toolName: 'mydocker') {
-                        dir('docker-files') {
-                            sh "docker-compose up -d"
-                        }
-                    }
-                }
-            }
-        }
+        // stage('Docker Compose') {
+        //     steps {
+        //         script{
+        //             withDockerRegistry(credentialsId: 'docker-cred', toolName: 'mydocker') {
+        //                 dir('docker-files') {
+        //                     sh "docker-compose up -d"
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+//################Choose one these ###############################
+        // stage('k8s'){
+        //  agent { label 'k8s' }
+        //  steps{
+        //  git branch: 'main', url: 'https://github.com/mushahid2120/3-tier-MERN-DevOps.git'
+        //  dir("k8s") {
+        //                  sh 'sudo kubectl create -k .'
+        //                  sh 'sleep 10s'
+        //                  sh 'sudo kubectl get all'
+        //              }
+        //      }
+        //  }
     }
     
 }
