@@ -112,6 +112,3 @@ To trigger the pipeline, configure Jenkins with:
 - Enhance security using **SAST/DAST** tools like SonarQube, Trivy, and OWASP ZAP.
 
 ---
-
-Let me know if you need any modifications or additional details!
-
