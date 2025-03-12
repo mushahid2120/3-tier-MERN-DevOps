@@ -1,33 +1,58 @@
-pipeline{
-    agent none
-stages{
-    stage('docker-build'){
-        agent { label 'docker' }
-        steps{
-        git branch: 'main', url: 'https://github.com/mushahid2120/3-tier-MERN-DevOps.git'
-        sh 'ls'
-        dir("backend"){
-            sh 'sudo docker build --rm -t mushahid144/my-node:v1 -f Docker/Dockerfile . '
-            sh 'sudo docker push mushahid144/my-node:v1'
-        }
-        dir("frontend"){
-            sh 'sudo docker build --rm -t mushahid144/my-react:v1 -f Docker/Dockerfile . '
-            sh 'sudo docker push mushahid144/my-react:v1'
-        }
-        
-        
+pipeline {
+    agent any
+    tools{
+        maven "mymaven"
+        jdk "jdk17"
+        nodejs "mynodejs"
     }
+    environment{
+        SCANNER_HOME= tool "sonar-scanner"
     }
-    stage('k8s'){
-        agent { label 'k8s' }
-        steps{
-        git branch: 'main', url: 'https://github.com/mushahid2120/3-tier-MERN-DevOps.git'
-        dir("k8s") {
-                        sh 'sudo kubectl create -k .'
-                        sh 'sleep 10s'
-                        sh 'sudo kubectl get all'
+    stages {
+        stage('Git Checkout') {
+            steps {
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/mushahid2120/3-tier-MERN-DevOps.git'
+            }
+        }
+        stage('trivy fs scan') {
+            steps {
+                sh "trivy fs ."
+            }
+        }
+        stage('OWASP scan') {
+            steps {
+                dependencyCheck additionalArguments: "--scan . --disableYarnAudit  --disableNodeAudit", odcInstallation: 'myDC'
+                dependencyCheckPublisher pattern: "**/dependency-check-report.xml"
+            }
+        }
+        stage('Docker Build') {
+            
+            steps {
+                script{
+                    withDockerRegistry(credentialsId: 'docker-cred', toolName: 'mydocker') {
+                        dir('backend') {
+                        sh "docker build -t backend-image -f Docker/Dockerfile ."
+                        }
+                    dir('frontend') {
+                        sh "docker build -t frontend-image  -f Docker/Dockerfile ."
+                        }
+                        
                     }
+                }
+            }
+        }
+        
+        stage('Docker Compose') {
+            steps {
+                script{
+                    withDockerRegistry(credentialsId: 'docker-cred', toolName: 'mydocker') {
+                        dir('docker-files') {
+                            sh "docker-compose up -d"
+                        }
+                    }
+                }
+            }
+        }
     }
-    }
-}
+    
 }
