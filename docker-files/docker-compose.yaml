@@ -3,14 +3,22 @@ services:
   database:
     container_name: mydb
     image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: redhat
     networks:
       - mynetwork
+    
 
   backend:
     depends_on:
       - database
     container_name: mynode
     image: 'mushahid144/my-node:v1'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: redhat
+      HOST: mydb
     networks:
       - mynetwork
     expose:
