@@ -32,6 +32,9 @@ services:
       context: ../frontend/Docker/
       # dockerfile: React
     image: mushahid144/my-react:v1
+    environment:
+      BACKEND_HOST: mynode
+      BACKEND_PORT: 4000
     networks:
       - mynetwork
     expose:
