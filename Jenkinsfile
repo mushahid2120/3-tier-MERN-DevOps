@@ -54,17 +54,16 @@ pipeline {
         //     }
         // }
 //################Choose one these ###############################
-        // stage('k8s'){
-        //  agent { label 'k8s' }
-        //  steps{
-        //  git branch: 'main', url: 'https://github.com/mushahid2120/3-tier-MERN-DevOps.git'
-        //  dir("k8s") {
-        //                  sh 'sudo kubectl create -k .'
-        //                  sh 'sleep 10s'
-        //                  sh 'sudo kubectl get all'
-        //              }
-        //      }
-        //  }
+        // stage('kubernetes deploy') {
+        //     steps {
+        //         withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'k8s-sec-new', namespace: 'default', restrictKubeConfigAccess: false, serverUrl: 'https://127.0.0.1:6443')  {
+        //             dir('k8s/') {
+        //                     sh "ls"
+        //                     sh "kubectl create -k . --validate=false"
+        //             }
+        //         }
+        //     }
+        // }
     }
     
 }
